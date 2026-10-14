@@ -1,0 +1,93 @@
+{
+  "entities": {
+    "ScoreRecord": {
+      "title": "ScoreRecord",
+      "description": "High score achieved in a game session",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "UID of the user who set the score"
+        },
+        "userName": {
+          "type": "string",
+          "description": "Display name of the user",
+          "maxLength": 64
+        },
+        "userPhoto": {
+          "type": "string",
+          "description": "Avatar URL of the user",
+          "maxLength": 512
+        },
+        "mode": {
+          "type": "string",
+          "description": "Game mode",
+          "enum": ["MARATHON", "SPRINT", "ULTRA"]
+        },
+        "score": {
+          "type": "number",
+          "description": "Final score earned"
+        },
+        "lines": {
+          "type": "number",
+          "description": "Number of lines cleared"
+        },
+        "level": {
+          "type": "number",
+          "description": "Level reached"
+        },
+        "timeMs": {
+          "type": "number",
+          "description": "Game duration in milliseconds"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp when the score was recorded"
+        }
+      },
+      "required": ["userId", "userName", "mode", "score", "lines", "level", "timeMs", "createdAt"]
+    },
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User profile with aggregated statistics",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "UID of the user"
+        },
+        "displayName": {
+          "type": "string",
+          "description": "User display name",
+          "maxLength": 64
+        },
+        "photoURL": {
+          "type": "string",
+          "description": "Avatar URL",
+          "maxLength": 512
+        },
+        "gamesPlayed": {
+          "type": "number",
+          "description": "Total games completed"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Last update timestamp"
+        }
+      },
+      "required": ["userId", "displayName", "gamesPlayed", "updatedAt"]
+    }
+  },
+  "firestore": {
+    "/scores/{scoreId}": {
+      "schema": "ScoreRecord",
+      "description": "Global leaderboard score entries"
+    },
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "User profile and aggregate game stats"
+    }
+  }
+}

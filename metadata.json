@@ -1,0 +1,6 @@
+{
+  "name": "Tetris Arcade - 클래식 테트리스",
+  "description": "정통 SRS 회전과 7-Bag 시스템을 갖춘 클래식 테트리스 아케이드 게임. 마라톤, 40줄 스프린트, 2분 울트라 모드 지원.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
